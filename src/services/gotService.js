@@ -45,6 +45,7 @@ export default class GotService {
         }
 
         return {
+            id: char.url.slice(45),
             name: char.name,
             gender: char.gender,
             born: char.born,
