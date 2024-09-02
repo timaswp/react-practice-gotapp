@@ -1,8 +1,23 @@
 import React, {Component} from 'react';
-import './randomChar.css';
+import styled from 'styled-components';
 import GotService from '../../services/gotService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
+
+const RandomBlock = styled.div`
+    background-color: #fff;
+    padding: 25px 25px 15px 25px;
+    margin-bottom: 40px;
+`;
+
+const RandomBlockTitle = styled.h4`
+    margin-bottom: 20px;
+    text-align: center;
+`;
+
+const TermSpan = styled.span`
+    font-weight: bold;
+`;
 
 export default class RandomChar extends Component {
 
@@ -50,11 +65,11 @@ export default class RandomChar extends Component {
         const content = !(loading || error) ? <View char={char}/> : null;
 
         return (
-            <div className="random-block rounded">
+            <RandomBlock className="rounded">
                 {errorMessage}
                 {spinner}
                 {content}
-            </div>
+            </RandomBlock>
         );
     }
 }
@@ -64,22 +79,22 @@ const View = ({char}) => {
 
     return (
         <>
-            <h4>Random Character: {name}</h4>
+            <RandomBlockTitle>Random Character: {name}</RandomBlockTitle>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Gender </span>
+                    <TermSpan>Gender </TermSpan>
                     <span>{gender}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Born </span>
+                    <TermSpan>Born </TermSpan>
                     <span>{born}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Died </span>
+                    <TermSpan>Died </TermSpan>
                     <span>{died}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Culture </span>
+                    <TermSpan>Culture </TermSpan>
                     <span>{culture}</span>
                 </li>
             </ul>

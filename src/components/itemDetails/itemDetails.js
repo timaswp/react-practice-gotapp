@@ -1,5 +1,23 @@
 import React, {Component} from 'react';
-import './itemDetails.css';
+import styled from 'styled-components';
+import Spinner from '../spinner/spinner';
+
+const ItemDetailsWrapper = styled.div`
+    background-color: #fff;
+    padding: 25px 25px 15px 25px;
+    margin-bottom: 40px;
+`;
+
+const ItemDetailsTitle = styled.h4`
+    margin-bottom: 20px;
+    text-align: center;
+`;
+
+// const SelectError = styled.span`
+//     color: #fff;
+//     text-align: center;
+//     font-size: 26px;
+// `;
 
 const Field = ({item, field, label}) => {
     console.log(item[field])
@@ -42,15 +60,16 @@ export default class ItemDetails extends Component {
 
     render() {
         if (!this.state.item) {
-            return <span className='select-error'>Please select a character</span>
+            // return <SelectError>Please select an item from the list</SelectError>
+            return <Spinner/>
         }
 
         const {item} = this.state;
         const {name} = item;
 
         return (
-            <div className="char-details rounded">
-                <h4>{name}</h4>
+            <ItemDetailsWrapper className="rounded">
+                <ItemDetailsTitle>{name}</ItemDetailsTitle>
                 <ul className="list-group list-group-flush">
                     {
                         React.Children.map(this.props.children, (child) => {
@@ -58,7 +77,7 @@ export default class ItemDetails extends Component {
                         })
                     }
                 </ul>
-            </div>
+            </ItemDetailsWrapper>
         );
     }
 }

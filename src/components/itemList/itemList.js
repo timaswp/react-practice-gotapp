@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import './itemList.css';
+import styled from 'styled-components';
 import { Spinner } from 'reactstrap';
+
+const ItemListGroup = styled.ul`
+    cursor: pointer;
+`;
 
 export default class ItemList extends Component {
 
@@ -42,9 +46,9 @@ export default class ItemList extends Component {
         const items = this.renderItems(itemList);
 
         return (
-            <ul className="item-list list-group">
+            <ItemListGroup className="item-list list-group">
                 {items}
-            </ul>
+            </ItemListGroup>
         );
     }
 }
