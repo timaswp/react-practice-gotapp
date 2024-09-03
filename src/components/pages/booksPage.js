@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ItemList from '../itemList/itemList';
 import ErrorMessage from '../errorMessage/errorMessage';
 import GotService from '../../services/gotService';
 import {Navigate} from 'react-router-dom';
+import {BooksList} from '../itemList/itemList';
 
 export default class BooksPage extends Component {
     gotService = new GotService();
@@ -36,7 +36,7 @@ export default class BooksPage extends Component {
         }
 
         return (
-            <ItemList
+            <BooksList
                 onItemSelected={this.handleItemSelected}
                 getData={this.gotService.getAllBooks}
                 renderItem={({name}) => name}

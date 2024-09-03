@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import ItemList from '../itemList/itemList';
 import ItemDetails, {Field} from '../itemDetails/itemDetails';
 import ErrorMessage from '../errorMessage/errorMessage';
 import GotService from '../../services/gotService';
 import RowBlock from '../rowBlock/rowBlock';
+import {HousesList} from '../itemList/itemList';
 
 export default class HousesPage extends Component {
     gotService = new GotService();
@@ -31,7 +31,7 @@ export default class HousesPage extends Component {
         }
 
         const itemList = (
-            <ItemList
+            <HousesList
                 onItemSelected={this.onItemSelected}
                 getData={this.gotService.getAllHouses}
                 renderItem={({name}) => name}/>

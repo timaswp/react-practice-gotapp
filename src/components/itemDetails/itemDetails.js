@@ -20,7 +20,6 @@ const ItemDetailsTitle = styled.h4`
 // `;
 
 const Field = ({item, field, label}) => {
-    console.log(item[field])
     return (
         <li className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>

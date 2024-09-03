@@ -1,54 +1,46 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Spinner } from 'reactstrap';
+import GotService from '../../services/gotService';
+import withData from '../../services/withData';
 
 const ItemListGroup = styled.ul`
     cursor: pointer;
 `;
 
-export default class ItemList extends Component {
+const ItemList = ({ data, renderItem, onItemSelected }) => {
 
-    state = {
-        itemList: null
-    }
-
-    componentDidMount() {
-        const {getData} = this.props;
-
-        getData()
-            .then(itemList => {
-                this.setState({itemList})
-            });
-    }
-
-    renderItems(arr) {
+    const renderItems = (arr) => {
         return arr.map(item => {
-            const {id} = item;
-            const label = this.props.renderItem(item);
+            const { id } = item;
+            const label = renderItem(item);
             return (
                 <li 
                     key={id}
                     className="list-group-item"
-                    onClick={ () => this.props.onItemSelected(id)}>
+                    onClick={() => onItemSelected(id)}>
                     {label}
                 </li>
-            )
-        })
-    }
+            );
+        });
+    };
+    
+    const items = renderItems(data);
 
-    render() {
-        const {itemList} = this.state;
-
-        if (!itemList) {
-            return <Spinner/>
-        }
-
-        const items = this.renderItems(itemList);
-
-        return (
-            <ItemListGroup className="item-list list-group">
-                {items}
-            </ItemListGroup>
-        );
-    }
+    return (
+        <ItemListGroup className="item-list list-group">
+            {items}
+        </ItemListGroup>
+    );
 }
+
+const { getAllCharacters, getAllBooks, getAllHouses } = new GotService();
+
+const CharactersList = withData(ItemList, getAllCharacters);
+const BooksList = withData(ItemList, getAllBooks);
+const HousesList = withData(ItemList, getAllHouses);
+
+export {
+    CharactersList,
+    BooksList,
+    HousesList
+};

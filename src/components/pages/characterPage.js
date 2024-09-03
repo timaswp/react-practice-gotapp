@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import ItemList from '../itemList/itemList';
 import ItemDetails, {Field} from '../itemDetails/itemDetails';
 import ErrorMessage from '../errorMessage/errorMessage';
 import GotService from '../../services/gotService';
 import RowBlock from '../rowBlock/rowBlock';
+import {CharactersList} from '../itemList/itemList';
 
 export default class CharacterPage extends Component {
     gotService = new GotService();
@@ -31,7 +31,7 @@ export default class CharacterPage extends Component {
         }
 
         const itemList = (
-            <ItemList
+            <CharactersList
                 onItemSelected={this.onItemSelected}
                 getData={this.gotService.getAllCharacters}
                 renderItem={({name, gender}) => `${name} (${gender})`}/>
